@@ -1,0 +1,112 @@
+<div class="clr-row">
+    <div class="clr-col-3">
+        <div class="info-container">
+            <h1>My profile</h1>
+            <p><b>Name:</b> {{userInfo.name}}<br>
+            <b>Age:</b> {{userInfo.age}}<br>
+            <b>Gender:</b> {{userInfo.gender}}<br>
+            <b>Town:</b> {{userInfo.town}}<br>
+            <b>Balance:</b> {{userInfo.balance}} lv.
+            </p>
+        </div>
+        
+    </div>
+    <div class="clr-col-9" style="text-align: center;">
+        <img class="top-image" src ="/assets/images/profile1.png"/>
+    </div>
+</div>
+
+<hr>
+
+<div class="donations-container">
+    <h2>My Donations</h2>
+    <ul class="list" *ngFor = "let donation of donations">
+        <li>Donated {{donation.amount}} lv. to <a [routerLink]="['/charities', donation.charityId]">this charity</a> </li>
+
+    </ul>
+</div>
+
+
+
+<div *ngIf="countCreatedCharities==0" >
+    <h2>My charities</h2>
+    <h3>none</h3>
+</div>
+
+<div *ngIf="countCreatedCharities > 0" class="charities-container">
+    <h2>My charities</h2>
+    <h3>{{countCreatedCharities}} in total</h3>
+        
+      
+    <div class="scrollable-container">
+        <div class="clr-row" >
+        
+            <div class="clr-col-lg-4 clr-col-md-8 clr-col-12"  *ngFor="let charity of createdCharities">
+                <div class="card">
+                    <div class="card-header">
+                        {{charity.name}}
+                    </div>
+                    <div class="card-img">
+                        
+                        <img src="/assets/images/sunflowers.jpg"/>
+                        
+                    </div>
+                    <div class="card-block">
+                       
+                        <div class="card-text">
+                            {{charity.description}}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-link" [routerLink]="['/charities', charity.id]" >See More</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<div *ngIf="countParticipatedCharities == 0">
+    <h2>Charities I have volunteered in</h2>
+    <h3>none</h3>
+</div>
+
+<div  *ngIf="countParticipatedCharities > 0" class="charities-container">
+    <h2>Charities I have volunteered in</h2>
+    <h3>{{countParticipatedCharities}} in total</h3>
+        
+       
+    <div class="scrollable-container">
+        <div class="clr-row" >
+        
+            <div class="clr-col-lg-4 clr-col-md-8 clr-col-12"  *ngFor="let charity of participatedCharities">
+                <div class="card">
+                    <div class="card-header">
+                        {{charity.name}}
+                    </div>
+                    <div class="card-img">
+                        
+                        <img src="/assets/images/sunflowers.jpg"/>
+                        
+                    </div>
+                    <div class="card-block">
+                        
+                        <div class="card-text">
+                            {{charity.description}}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-link" [routerLink]="['/charities', charity.id]" >See More</button>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+</div>
+
+

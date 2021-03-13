@@ -1,0 +1,128 @@
+
+			<div class="clr-row">
+				<div class="clr-col-2">
+					<span></span>
+				</div>
+				<div class="clr-col-4">
+					<span>
+						<img class="img-helping" src="../assets/images/charity.PNG">
+					</span>
+				</div>
+				<div class="clr-col-6">
+					<span>
+						<form clrForm clrLayout = "vertical">
+							<clr-input-container>
+								<label>Name</label>
+								<input clrInput type="text" [(ngModel)]="charity.name" name="name" required/>
+								<clr-control-error>This field is required!</clr-control-error>
+								<clr-icon *ngIf="emptyName()"  shape="error-standard" style="color : red;"></clr-icon>
+							</clr-input-container>
+							<clr-textarea-container>
+								<label>Description</label>
+								<textarea clrTextarea [(ngModel)]="charity.description" name="description" required></textarea>
+								<clr-control-error>This field is required!</clr-control-error>
+								<clr-icon *ngIf="emptyDescription()"  shape="error-standard" style="color : red;"></clr-icon>
+							</clr-textarea-container>
+						</form>
+							
+						<form [formGroup]="myForm" clrForm>
+				 
+							<img [src]="imageSrc" *ngIf="imageSrc" style="height: 100px; width:200px">
+			
+							<br>
+							
+								<span class="form-group">
+									<label  style = "color : black; font-size : 13px" for="name"><b>Thumbnail</b></label>
+									<br>
+									<input
+										formControlName="name"
+										id="name" 
+										type="text" 
+										class="form-control">
+									
+									<div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+										<div *ngIf="f.name.errors.required">Name is required.</div>
+										<div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+									</div>
+								</span>
+							
+							
+							
+							<span class="form-group">
+								
+								<input
+									formControlName="file"
+									id="file" 
+									type="file" 
+									class="form-control"
+									(change)="onFileChange($event)">
+								<div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+									<div *ngIf="f.file.errors.required">File is required.</div>
+								</div>
+							</span>
+							
+							
+								
+							
+						</form>
+			
+						<form clrForm clrLayout = "vertical">
+							<clr-input-container>
+								<label>Donation required</label>
+								<input clrInput type="number" min="0" placeholder="0.00" [(ngModel)]="charity.required_amount" name="required_amount" required/>
+								
+							</clr-input-container>
+			
+							<clr-input-container>
+								<label>Participants required</label>
+								<input clrInput type="number" min="0" placeholder="0" [(ngModel)]="charity.required_participants" name="required_participants" required/>
+								
+							</clr-input-container>
+			
+							<button type="submit" class="btn btn-primary" (click) =onSubmit() >CREATE</button>
+							<clr-icon *ngIf="inputOk==false" shape="error-standard" style="color : red;"></clr-icon>
+						</form>
+					</span>
+				</div>
+				
+				
+			</div>
+			
+			<!--  -->
+	
+
+
+<clr-modal  [(clrModalOpen)]="successModal" >
+	<h3 class="modal-title">Successfully created charity {{charity.name}}</h3>
+	<div class="modal-body">
+		<p>We hope you reach your goal!</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" routerLink = "/charities">OK</button>
+		
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="errorModal" >
+	<h3 class="modal-title">Oops..</h3>
+	<div class="modal-body">
+		<p>There has been an error! Chosen image file is too large. Try with a different image.</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" routerLink = "closeErrorModal()">CLOSE</button>
+		
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="wrongInputModal" >
+	<h3 class="modal-title">Bad input!</h3>
+	<div class="modal-body">
+		<p>Name and Description are required fields! Required donation and required volunteers cannot have negative values and cannot both be 0!
+
+		</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click) = "closeEWrongInputModal()">CLOSE</button>
+		
+	</div>
+</clr-modal>

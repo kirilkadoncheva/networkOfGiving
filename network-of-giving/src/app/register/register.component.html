@@ -1,0 +1,77 @@
+
+			<div class="login-wrapper">
+				<form clrForm class="login">
+					<section class="title">
+						<h3 class="welcome">Welcome to the</h3>
+          Network of Giving
+          
+						<h5 class="hint">Sign up now and make the world a better place!</h5>
+					</section>
+					<clr-input-container>
+						<label>Username</label>
+						<input clrInput type="text" [(ngModel)]="form.username" name="username" required/>
+						<clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+						
+					</clr-input-container>
+					<clr-password-container>
+						<label>Password</label>
+						<input clrPassword type="password" [(ngModel)]="form.password" name="password" required/>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-password-container>
+					<clr-input-container>
+						<label>Name</label>
+						<input clrInput type="text" [(ngModel)]="form.name" name="name" required/>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-input-container>
+					<clr-input-container>
+						<label>Age</label>
+						<input clrInput type="number" [(ngModel)]="form.age" name="age" required/>
+						<clr-control-error>This field is required!</clr-control-error>
+					</clr-input-container>
+					<!-- <clr-select-container >
+						<label>Gender:</label>
+						
+							<select  clrSelect [(ngModel)]="form.gender" name="gender">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Other">Other</option>
+							</select>
+						
+					</clr-select-container> -->
+
+					<clr-radio-container clrInline>
+						<label>Gender:</label>
+						<clr-radio-wrapper>
+						  <input type="radio" clrRadio name="gender" required value="Male" [(ngModel)]="form.gender" />
+						  <label>Male</label>
+						</clr-radio-wrapper>
+						<clr-radio-wrapper>
+							<input type="radio" clrRadio name="gender" required value="Female" [(ngModel)]="form.gender" />
+							<label>Female</label>
+						  </clr-radio-wrapper>
+						  <clr-radio-wrapper>
+							<input type="radio" clrRadio name="gender" required value="Other" [(ngModel)]="form.gender" />
+							<label>Other</label>
+						  </clr-radio-wrapper>
+						<clr-control-error>This field is required!</clr-control-error>
+					  </clr-radio-container>
+
+					<clr-input-container>
+						<label>Town</label>
+						<input clrInput type="text" [(ngModel)]="form.town" name="town"/>
+					</clr-input-container>
+					<clr-input-container>
+						<label>Balance</label>
+						<input clrInput type="number" [(ngModel)]="form.balance" name="balance"/>
+					</clr-input-container>
+					<div *ngIf="isSignUpFailed" class="error-active">
+			<br>Sign up failed! Username is taken!
+			</div>
+				
+				
+					<button type="submit" routerLink="/login" class="btn btn-primary" (click)=onSubmit()>Sign up</button>
+				
+			
+				</form>
+			</div>
+	

@@ -1,0 +1,62 @@
+.container {
+    
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:auto;
+    margin-bottom:auto;
+  background-color: white;
+   text-align: center;
+  }
+ 
+
+form{
+   text-align: left;
+}
+   
+.btn-primary
+{
+    background-color: #e24405;
+    outline-color: white;
+    border-color: white;
+    color: white;
+}
+
+.btn-primary:hover
+{
+    background-color: #f5a742;
+    
+}
+
+.btn-regular
+{
+    outline-color: #e24405;
+    border-color: #e24405;
+    color: #e24405;
+}
+
+.btn-regular:hover
+{
+    background-color: #fcd197;
+    
+}
+
+.error-active{
+    color: darkred;
+}
+
+.clr-col{
+    text-align: center;
+}
+
+.login-wrapper {
+    background-image: url(/assets/images/sun.jpg);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: right ;
+  }
+
+  .login-wrapper .login {
+    min-height: 90vh;
+    position : left center;
+  }
+  

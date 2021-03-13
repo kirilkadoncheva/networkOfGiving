@@ -1,0 +1,80 @@
+img{
+    width: 700px;
+    height: 300px;
+}
+
+
+.btn-primary
+{
+    background-color: #e24405;
+    outline-color: white;
+    border-color: white;
+    color: white;
+}
+
+.btn-primary:hover
+{
+    background-color: #f5a742;
+    
+}
+
+.btn-regular
+{
+    outline-color: #e24405;
+    border-color: #e24405;
+    color: #e24405;
+}
+
+.btn-sm
+{
+    outline-color: #e24405;
+    border-color: #e24405;
+    color: #e24405;
+}
+
+.btn-sm:hover
+{
+    background-color: #fcab97;
+    
+}
+
+.btn-regular:hover
+{
+    background-color: #fcd197;
+    
+}
+
+.money-container{
+    color: #01631b;
+    font-size: 20px;
+
+}
+
+.participants-container{
+    color: #e24405;
+    font-size: 20px;
+}
+
+.btn-outline
+{
+    outline-color: #e24405;
+    border-color: #e24405;
+    color: #e24405;
+}
+
+.btn-outline:hover
+{
+    background-color: #fcd197;
+    
+}
+
+.success{
+    color: #01631b;
+    font-size: 20px;
+    text-decoration: solid;
+}
+
+.error{
+    font-size: 12px;
+    color: red;
+}

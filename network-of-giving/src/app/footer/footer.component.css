@@ -1,0 +1,28 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height : 20px;
+    width: 60%;
+    background-color: white;
+    color: black;
+    text-align: center;
+ }
+
+ .footer-container{
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+ }
+
+ 
+.page-footer {
+    position: fixed;
+    height: 50px;
+    background-color: transparent;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}

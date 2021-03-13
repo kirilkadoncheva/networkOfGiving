@@ -1,0 +1,158 @@
+
+			<div class="clr-row">
+				<!-- <div class="clr-col"></div> -->
+				<div class="clr-col-6">
+					<div class="name-container">
+						<h1>{{charity.name}}</h1>
+					</div>
+					
+				</div>
+				<div class="clr-col" style="text-align: right;">
+					<div><br><br></div>
+					
+					<button class="btn btn-sm" *ngIf="deleteButton" (click)="isDeleteModalOpen = true">Delete</button>
+				</div>
+			</div>
+			<div class="clr-row">
+				<!-- <div class="clr-col"></div> -->
+				<div class="clr-col-6">
+					<div class="image-container">
+						
+						<span *ngIf = "!retrievedImage"><img src="/assets/images/sunflowers.jpg"/></span>
+						<span *ngIf = "retrievedImage"><img [src]="retrievedImage"/></span>
+
+					</div>
+					
+				</div>
+				<div class="clr-col" >
+					<div class="money-container">
+						<span>{{charity.donated_amount}} / {{charity.required_amount}}  </span>
+						<span><clr-icon shape="dollar-bill" size="20"></clr-icon></span>
+						
+						
+					</div>
+					<div class="participants-container">
+						<span>{{charity.participants}} / {{charity.required_participants}}  </span>
+						<span><clr-icon shape="users" size="20"></clr-icon></span>
+					</div>
+					
+					<div><br></div>
+					<div *ngIf="!tokenStorageService.isUserLoggedIn()">
+						<span><button class="btn btn-primary" routerLink="/login">Donate</button></span>
+						<span><button class="btn btn-regular" routerLink="/login">Volunteer</button></span>
+					</div>
+					<div *ngIf="tokenStorageService.isUserLoggedIn()">
+						<span><button class="btn btn-primary" *ngIf="!completedDonations" (click)="makeDonation()">Donate</button></span>
+						<span><button class="btn btn-primary" *ngIf="completedDonations" disabled>Donate</button></span>
+						<span><button class="btn btn-regular" *ngIf="!completedVolunteers" (click)="volunteer()">Volunteer</button></span>
+						<span><button class="btn btn-regular" *ngIf="completedVolunteers" disabled>Volunteer</button></span>
+						
+					</div>
+				</div>
+			</div>
+			<div class="clr-row">
+				<!-- <div class="clr-col"></div> -->
+				<div class="clr-col-6">
+					<div class="description-container">
+						<p>{{charity.description}}</p>
+						<div class="success" *ngIf="charity.completed">
+							<span><b>{{charity.name}} has already collected all needed resources!  </b></span>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="clr-col">
+					
+				</div>
+			</div>
+	
+
+<clr-modal  [(clrModalOpen)]="isDonationModalVisible" >
+	<h3 class="modal-title">Make a donation</h3>
+	<div class="modal-body">
+		<form clrForm>
+			<label>Choose an amount :</label>
+			<input clrInput placeholder="0.00" name="amount" [(ngModel)]="donation.amount" />
+			<p>*Average donation amount </p>
+			<p class="error" *ngIf="donation.amount>charity.getRemaining()">Donation is too big. Only {{charity.getRemaining()}} is needed.</p>
+		  </form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="cancelDonation()">CANCEL</button>
+		<button class="btn btn-primary" type="button" (click)="finalizeDonation()" *ngIf="!(donation.amount>charity.getRemaining())">DONATE</button>
+		<button class="btn btn-primary" type="button" *ngIf="donation.amount>charity.getRemaining()" disabled>DONATE</button>
+		
+        
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="thankYouDonationModal" >
+	<h3 class="modal-title">Thank you for your donation!</h3>
+	<div class="modal-body">
+		<clr-icon shape="heart" size="30"></clr-icon>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="closeThankYouModal()">CLOSE</button>
+		
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="isVolunteerModalVisible" >
+	<h3 class="modal-title">Sign up as a volunteer</h3>
+	<div class="modal-body">
+		<p>Confirm you will be available to volunteer at {{charity.name}}.</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="cancelVolunteering()">CANCEL</button>
+		<button class="btn btn-primary" type="button" (click)="finalizeVolunteering()">VOLUNTEER</button>
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="thankYouVolunteerModal" >
+	<h3 class="modal-title">Thank you for volunteering!</h3>
+	<div class="modal-body">
+		<clr-icon shape="heart" size="30"></clr-icon>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="closeThankYouModal()">CLOSE</button>
+		
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="errorModal" >
+	<h3 class="modal-title">Oops...</h3>
+	<div class="modal-body">
+		<p>Something went wrong. Please try again later.</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="errorModal=false">CLOSE</button>
+		
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="fundsModal" >
+	<h3 class="modal-title">Oops...</h3>
+	<div class="modal-body">
+		<p>You do not have enough funds to donate {{donation.amount}}. You only have {{this.balance}} in your account.</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="fundsModal=false">CLOSE</button>
+		<button class="btn btn-outline" type="button" routerLink = "/add_funds">ADD FUNDS</button>
+	</div>
+</clr-modal>
+
+<clr-modal  [(clrModalOpen)]="isDeleteModalOpen" >
+	<h3 class="modal-title">Delete Charity {{charity.name}}</h3>
+	<div class="modal-body">
+		<p>Are you sure you want to delete {{charity.name}}? All collected funds will be returned to the donors.</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="isDeleteModalOpen=false">CANCEL</button>
+		<button class="btn btn-outline" type="button" (click)="deleteCharity()">DELETE</button>
+	</div>
+</clr-modal>
+
+
+

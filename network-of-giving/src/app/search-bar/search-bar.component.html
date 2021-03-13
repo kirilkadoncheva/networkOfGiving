@@ -1,0 +1,13 @@
+<form class="search">
+    
+        <input [(ngModel)]="searchInput"  name="input" type="text" placeholder="Search for charity...">
+        <button class="btn btn-link"  [routerLink]="['/search_charities', searchInput]"><clr-icon  shape="search" size="20"></clr-icon></button>
+    </form>
+    <div>
+        <ul id="resultUl">
+            <li *ngFor="let charity of searchResult">
+               <p> {{ charity.name }}</p>
+            </li>
+          </ul>
+    </div>
+    

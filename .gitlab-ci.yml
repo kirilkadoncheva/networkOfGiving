@@ -1,0 +1,19 @@
+image: maven:latest
+
+stages:
+        - build
+        - testing
+
+before_script: 
+        - echo "Start pipeline"
+
+building:
+        stage: build
+        script:
+                - cd networkOfGiving
+                - mvn clean install
+testing:
+        stage: testing
+        script:
+                - cd networkOfGiving
+                - mvn test

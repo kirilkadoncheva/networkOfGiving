@@ -1,0 +1,39 @@
+
+      
+        <form clrForm clrLayout = "vertical">
+            <clr-input-container>
+                <label>You have {{moneyInAccount}} in your account.</label>
+                <label>How much will you add?</label>
+                <input clrInput type="Number" min="1" [(ngModel)]="moneyToAdd" name="name" required/>
+                <clr-control-error>This field is required!</clr-control-error>
+            </clr-input-container>
+            <button type="submit" class="btn btn-primary" (click)=onSubmit()>GO</button>
+        </form>
+        
+        
+        
+    
+
+<clr-modal  [(clrModalOpen)]="successModal" >
+	<h3 class="modal-title">Funds were added successfully to your account!</h3>
+	<div class="modal-body">
+		<clr-icon shape="success-standard" size="30"></clr-icon>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="closeSuccess()">CLOSE</button>
+		
+	</div>
+</clr-modal>
+
+
+<clr-modal  [(clrModalOpen)]="errorModal" >
+	<h3 class="modal-title">Something went wrong...</h3>
+	<div class="modal-body">
+		<clr-icon shape="error-standard" size="30"></clr-icon>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-outline" type="button" (click)="closeError()">CLOSE</button>
+		
+	</div>
+</clr-modal>
+

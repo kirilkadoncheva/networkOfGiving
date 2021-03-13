@@ -1,0 +1,30 @@
+.login-wrapper {
+    background-image: url(/assets/images/sun.jpg);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: right ;
+  }
+
+  .login-wrapper .login {
+    min-height: 90vh;
+    position : left center;
+  }
+  .btn-primary
+  {
+      background-color: #e24405;
+      outline-color: white;
+      border-color: white;
+      color: white;
+  }
+  
+  .btn-primary:hover
+  {
+      background-color: #f5a742;
+      
+  }
+  
+ .signup
+ {
+   color:#e24405;
+
+ }

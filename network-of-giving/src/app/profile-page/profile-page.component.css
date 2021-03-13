@@ -1,0 +1,45 @@
+.info-container{
+    height:300px;
+}
+
+h2,h1 {
+    margin-bottom: 0px;
+    color: #8a0303;
+}
+
+h3{
+    margin-top:1px;
+    color: #cf7d02;
+}
+
+.scrollable-container{
+    height:500px;
+   
+    overflow-y:auto;
+    /* border :solid;
+    border-color:  #ede7df; */
+}
+
+.donations-container{
+    height:150px;
+   
+    overflow-y:auto;
+}
+
+p{
+    font-size : 30px;
+    line-height: 40px;;
+}
+
+.top-image{
+    height:300px;
+    width:800px;
+}
+
+h1{
+    font-size:40px;
+}
+
+hr{
+    width:60%;
+}

@@ -1,0 +1,38 @@
+<header class="header">
+	<div class="branding">
+		<a routerLink = "/charities">
+			<img src="/assets/images/heart1.png"/>
+		    <span class="title">Network of Giving</span>
+		</a>
+	</div>
+	<div class="header-nav">
+		<a routerLink="/charities" class="nav-link">Charities</a>
+		<a *ngIf="tokenStorageService.isUserLoggedIn()" class="nav-link"  routerLink="/charities/create">Create Charity</a>
+		<app-search-bar></app-search-bar>
+		</div>
+		<div class="header-actions">
+			<!-- <span *ngIf="tokenStorageService.isUserLoggedIn()">
+				<clr-icon shape="user"></clr-icon>
+                <span class="nav-text">Hello, {{name}}</span>
+			</span> -->
+			<span *ngIf="tokenStorageService.isUserLoggedIn()" class="nav-link nav-icon-text">
+				<a [routerLink]="['/profiles', tokenStorageService.getUsername()]" ><clr-icon shape="user"></clr-icon>
+					<span class="nav-text">Hello, {{tokenStorageService.getUsername()}}</span></a>
+			</span>
+			<a *ngIf="!tokenStorageService.isUserLoggedIn()" routerLink="/login" class="nav-link">LOGIN</a>
+			<a *ngIf="!tokenStorageService.isUserLoggedIn()" routerLink="/signup" class="nav-link">REGISTER</a>
+			<a *ngIf="tokenStorageService.isUserLoggedIn()" (click)="isModalVisible=true" class="active nav-link">LOGOUT</a>
+			
+			
+		</div>
+	</header>
+	<clr-modal  [(clrModalOpen)]="isModalVisible" >
+		<h3 class="modal-title">Log out?</h3>
+		<div class="modal-body">
+			<p>Are you sure?</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-outline" type="button" (click)="cancel()">CANCEL</button>
+			<button class="btn btn-primary" type="button" (click)=logOut()>LOGOUT</button>
+		</div>
+	</clr-modal>
